@@ -17,24 +17,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "fb_gfx.h"
-
-typedef struct { // Data stored PER GLYPH
-        uint16_t bitmapOffset;     // Pointer into GFXfont->bitmap
-        uint8_t  width, height;    // Bitmap dimensions in pixels
-        uint8_t  xAdvance;         // Distance to advance cursor (x axis)
-        int8_t   xOffset, yOffset; // Dist from cursor pos to UL corner
-} GFXglyph;
-
-typedef struct { // Data stored for FONT AS A WHOLE:
-        uint8_t  *bitmap;      // Glyph bitmaps, concatenated
-        GFXglyph *glyph;       // Glyph array
-        uint8_t   first, last; // ASCII extents
-        uint8_t   yAdvance;    // Newline distance (y axis)
-        uint8_t   yOffset;     // Y offset of the font zero line (y axis)
-} GFXfont;
-
-#include "FreeMonoBold12pt7b.h"//14x24
-#define gfxFont ((GFXfont*)(&FreeMonoBold12pt7b))
+#include "fonts.h"
 
 void fb_gfx_fillRect(fb_data_t *fb, int32_t x, int32_t y, int32_t w, int32_t h, uint32_t color)
 {
